@@ -30,8 +30,8 @@ if sys.version_info.major < 3:
 
 # logging.setLevel(logging.DEBUG)
 
-pygame.init()
-pygame.mixer.init()
+#pygame.init()
+#pygame.mixer.init()
 class MagicBand(cli.CommandLineInterface):
     def __init__(self):
         sys.stdout.write("Hello")
