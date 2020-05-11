@@ -60,9 +60,11 @@ class MagicBand(cli.CommandLineInterface):
         super(MagicBand, self).__init__(parser, groups="rdwr dbg card clf")
 
     def on_rdwr_startup(self, targets):
+        logging.info("on_rdwr_startup")
         return targets
 
     def on_rdwr_connect(self, tag):
+        logging.info("on_rdwr_connect")
         logging.info("MagicBandID = {0}".format(binascii.hexlify(tag.identifier)))
         #self.ringsound.play() 
         self.do_lights_circle((255,255,255))
@@ -73,6 +75,7 @@ class MagicBand(cli.CommandLineInterface):
         return  True
 
     def on_card_startup(self, target):
+        logging.info("on_card_startup")
         # Nothing needed
         logging.info("Listening for magicbands")
 
