@@ -38,10 +38,10 @@ class MagicBand(cli.CommandLineInterface):
         log.info("starting up")
         self.ringsound=pygame.mixer.Sound(file="ring_sound.wav") 
         self.whsound=pygame.mixer.Sound(file="justhome.wav")
-        self.RING_LIGHT_SIZE=5
-        self.total_pixels = ring_pixels+mickey_pixels
-        self.ring_pixels = ring_pixels
-        self.pixels = neopixel.NeoPixel(pixel_pin, self.total_pixels, brightness=0.5, auto_write=False, pixel_order=neopixel.RGB)
+        #self.RING_LIGHT_SIZE=5
+        #self.total_pixels = ring_pixels+mickey_pixels
+        #self.ring_pixels = ring_pixels
+        #self.pixels = neopixel.NeoPixel(pixel_pin, self.total_pixels, brightness=0.5, auto_write=False, pixel_order=neopixel.RGB)
         self.rdwr_commands = { }
         self.do_lights_on((255,255,255))
         time.sleep(.5)
@@ -77,31 +77,35 @@ class MagicBand(cli.CommandLineInterface):
         log.info("Listening for magicbands")
 
     def color_chase(self, color, wait):
-        size = self.RING_LIGHT_SIZE
-        for i in range(self.ring_pixels+size+1):
-            for x in range(1, size):
-                if (x+i) < self.ring_pixels:
-                    self.pixels[x+i] = color
-            if (i > size) :
-                off = (i-size)-1
-                self.pixels[off] = 0
-            time.sleep(wait)
-            self.pixels.show()
-        time.sleep(0.01)
+        log.debug("color chase")
+        # size = self.RING_LIGHT_SIZE
+        # for i in range(self.ring_pixels+size+1):
+        #     for x in range(1, size):
+        #         if (x+i) < self.ring_pixels:
+        #             self.pixels[x+i] = color
+        #     if (i > size) :
+        #         off = (i-size)-1
+        #         self.pixels[off] = 0
+        #     time.sleep(wait)
+        #     #self.pixels.show()
+        # time.sleep(0.01)
 
     def do_lights_circle(self,color):
-        for i in range(3):
-            self.color_chase(color,.01)
+        log.debug("lights circle")
+        # for i in range(3):
+        #     self.color_chase(color,.01)
 
     def do_lights_on(self, color):
-        for i in range(self.total_pixels):
-            self.pixels[i] = color
-        self.pixels.show()
+        log.debug("lights on")
+        # for i in range(self.total_pixels):
+        #     self.pixels[i] = color
+        # self.pixels.show()
 
     def do_lights_off(self):
-        for i in range(self.total_pixels):
-            self.pixels[i] = 0
-        self.pixels.show()
+        log.debug("lights off")
+        # for i in range(self.total_pixels):
+        #     self.pixels[i] = 0
+        # self.pixels.show()
 
     def run(self):
         while self.run_once():
