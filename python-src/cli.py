@@ -33,6 +33,7 @@ import nfc
 log = logging.getLogger('main')
 log.setLevel(logging.CRITICAL)
 
+logging.basicConfig(level=logging.DEBUG)
 def get_test_methods(obj):
     test_methods = list()
     for name, func in inspect.getmembers(obj, inspect.ismethod):
@@ -113,6 +114,7 @@ class CommandLineInterface(object):
                 self.options.test = filter(
                     lambda name: re.match(self.options.select, name),
                     self.options.test)
+        logging.debug("done")
 
     def add_dbg_options(self, argument_parser):
         group = argument_parser.add_argument_group(title="Debug Options")
