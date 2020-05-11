@@ -34,6 +34,8 @@ pygame.init()
 pygame.mixer.init()
 class MagicBand(cli.CommandLineInterface):
     def __init__(self):
+        sys.stdout.write("Hello")
+        log.info("starting up")
         self.ringsound=pygame.mixer.Sound(file="ring_sound.wav") 
         self.whsound=pygame.mixer.Sound(file="justhome.wav")
         self.RING_LIGHT_SIZE=5
