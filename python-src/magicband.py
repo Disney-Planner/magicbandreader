@@ -34,7 +34,6 @@ if sys.version_info.major < 3:
 #pygame.mixer.init()
 class MagicBand(cli.CommandLineInterface):
     def __init__(self):
-        sys.stdout.write("Hello")
         logging.info("starting up")
         #self.ringsound=pygame.mixer.Sound(file="ring_sound.wav") 
         #self.whsound=pygame.mixer.Sound(file="justhome.wav")
@@ -58,6 +57,7 @@ class MagicBand(cli.CommandLineInterface):
                 formatter_class=argparse.RawDescriptionHelpFormatter,
                 description="")
         super(MagicBand, self).__init__(parser, groups="rdwr dbg card clf")
+        logging.info("done starting up")
 
     def on_rdwr_startup(self, targets):
         logging.info("on_rdwr_startup")
