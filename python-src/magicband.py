@@ -17,7 +17,7 @@ import time
 
 os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
 import pygame
-
+logging.basicConfig(level=logging.DEBUG)
 # The number of NeoPixels
 ring_pixels = 50 
 mickey_pixels = 40 
@@ -26,16 +26,16 @@ pixel_pin = board.D18
 if sys.version_info.major < 3:
     sys.exit("This script requires Python 3")
 
-log = logging.getLogger('main')
+# log = logging.getLogger('main')
 
-log.setLevel(logging.DEBUG)
+# logger.setLevel(logging.DEBUG)
 
 pygame.init()
 pygame.mixer.init()
 class MagicBand(cli.CommandLineInterface):
     def __init__(self):
         sys.stdout.write("Hello")
-        log.info("starting up")
+        logger.info("starting up")
         self.ringsound=pygame.mixer.Sound(file="ring_sound.wav") 
         self.whsound=pygame.mixer.Sound(file="justhome.wav")
         #self.RING_LIGHT_SIZE=5
@@ -63,7 +63,7 @@ class MagicBand(cli.CommandLineInterface):
         return targets
 
     def on_rdwr_connect(self, tag):
-        log.info("MagicBandID = {0}".format(binascii.hexlify(tag.identifier)))
+        logger.info("MagicBandID = {0}".format(binascii.hexlify(tag.identifier)))
         self.ringsound.play() 
         self.do_lights_circle((255,255,255))
         self.whsound.play()
@@ -74,10 +74,10 @@ class MagicBand(cli.CommandLineInterface):
 
     def on_card_startup(self, target):
         # Nothing needed
-        log.info("Listening for magicbands")
+        logger.info("Listening for magicbands")
 
     def color_chase(self, color, wait):
-        log.debug("color chase")
+        logger.debug("color chase")
         # size = self.RING_LIGHT_SIZE
         # for i in range(self.ring_pixels+size+1):
         #     for x in range(1, size):
@@ -91,25 +91,25 @@ class MagicBand(cli.CommandLineInterface):
         # time.sleep(0.01)
 
     def do_lights_circle(self,color):
-        log.debug("lights circle")
+        logger.debug("lights circle")
         # for i in range(3):
         #     self.color_chase(color,.01)
 
     def do_lights_on(self, color):
-        log.debug("lights on")
+        logger.debug("lights on")
         # for i in range(self.total_pixels):
         #     self.pixels[i] = color
         # self.pixels.show()
 
     def do_lights_off(self):
-        log.debug("lights off")
+        logger.debug("lights off")
         # for i in range(self.total_pixels):
         #     self.pixels[i] = 0
         # self.pixels.show()
 
     def run(self):
         while self.run_once():
-            log.info('.')
+            logger.info('.')
 
 class ArgparseError(SystemExit):
     def __init__(self, prog, message):
