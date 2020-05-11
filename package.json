@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/donkey-wrestlers/magicbandreader/issues"
   },
-  "homepage": "https://github.com/donkey-wrestlers/magicbandreader#readme"
+  "homepage": "https://github.com/donkey-wrestlers/magicbandreader#readme",
+  "dependencies": {
+    "nfc-pcsc": "^0.8.0"
+  }
 }
