@@ -36,8 +36,8 @@ class MagicBand(cli.CommandLineInterface):
     def __init__(self):
         sys.stdout.write("Hello")
         logging.info("starting up")
-        self.ringsound=pygame.mixer.Sound(file="ring_sound.wav") 
-        self.whsound=pygame.mixer.Sound(file="justhome.wav")
+        #self.ringsound=pygame.mixer.Sound(file="ring_sound.wav") 
+        #self.whsound=pygame.mixer.Sound(file="justhome.wav")
         #self.RING_LIGHT_SIZE=5
         #self.total_pixels = ring_pixels+mickey_pixels
         #self.ring_pixels = ring_pixels
@@ -64,9 +64,9 @@ class MagicBand(cli.CommandLineInterface):
 
     def on_rdwr_connect(self, tag):
         logging.info("MagicBandID = {0}".format(binascii.hexlify(tag.identifier)))
-        self.ringsound.play() 
+        #self.ringsound.play() 
         self.do_lights_circle((255,255,255))
-        self.whsound.play()
+        #self.whsound.play()
         self.do_lights_on((0,153,153))
         time.sleep(3)
         self.do_lights_off() 
