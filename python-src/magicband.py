@@ -11,17 +11,17 @@ import cli
 import sys
 import os
 import time
-import board
-import neopixel
+#import board
+#import neopixel
 import time
 
-os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
-import pygame
+#os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
+#import pygame
 logging.basicConfig(level=logging.DEBUG)
 # The number of NeoPixels
 ring_pixels = 50 
 mickey_pixels = 40 
-pixel_pin = board.D18
+#pixel_pin = board.D18
 
 if sys.version_info.major < 3:
     sys.exit("This script requires Python 3")

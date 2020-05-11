@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/donkey-wrestlers/magicbandreader#readme",
   "dependencies": {
+    "@pokusew/pcsclite": "^0.6.0",
     "nfc-pcsc": "^0.8.0",
     "node-wav-player": "^0.1.0"
   }
