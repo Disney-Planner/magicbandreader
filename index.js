@@ -1,4 +1,4 @@
-import { NFC } from 'nfc-pcsc';
+const { NFC } = require('nfc-pcsc');
 const nfc = new NFC(); // optionally you can pass logger
 
 nfc.on('reader', reader => {
