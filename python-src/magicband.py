@@ -28,7 +28,7 @@ if sys.version_info.major < 3:
 
 log = logging.getLogger('main')
 
-log.setLevel(logging.CRITICAL)
+log.setLevel(logging.DEBUG)
 
 pygame.init()
 pygame.mixer.init()
