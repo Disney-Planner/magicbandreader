@@ -20,6 +20,7 @@
     "@pokusew/pcsclite": "^0.6.0",
     "nfc-pcsc": "^0.8.0",
     "node-nfcpy-id": "^0.1.1",
-    "node-wav-player": "^0.1.0"
+    "node-wav-player": "^0.1.0",
+    "play-sound": "^1.1.3"
   }
 }

@@ -46,6 +46,8 @@
 
 const NfcpyId = require('node-nfcpy-id').default;
 const nfc = new NfcpyId().start();
+const player = require('play-sound')(opts = {});
+const magicBandSound = './sounds/magic-band-sound.mp3';
  
 nfc.on('touchstart', (card) => {
   console.log('Card ID: ' + card.id);
@@ -55,6 +57,7 @@ nfc.on('touchstart', (card) => {
   // 3: FeliCa
   // 4: Mifare (DESFire)
   console.log('Card Type: ' + card.type);
+  player.play(magicBandSound);
 });
  
 // If the `mode` is `loop` or `non-loop`, event will occur when the card is removed
