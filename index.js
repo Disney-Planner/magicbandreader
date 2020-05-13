@@ -43,26 +43,27 @@
 // nfc.on('error', err => {
 // 	console.log('an error occurred', err);
 // });
-
+const chalk = require('chalk');
 const NfcpyId = require('node-nfcpy-id').default;
 const nfc = new NfcpyId().start();
 const player = require('play-sound')(opts = {});
 const magicBandSound = './sounds/magic-band-sound.mp3';
  
 nfc.on('touchstart', (card) => {
-  console.log('Card ID: ' + card.id);
-  console.log(`this card belongs to: ${magicBands[card.id]}`);
+  console.log('MagicBand ID: ' + card.id);
+  const magicBand = magicBands[card.id];
+  console.log(magicBand.color(`this MagicBand belongs to: ${magicBand.name}`));
   // card.type is the same value as that of nfcpy.
   // 2: Mifare
   // 3: FeliCa
   // 4: Mifare (DESFire)
-  console.log('Card Type: ' + card.type);
+  console.log('MagicBand Type: ' + card.type);
   player.play(magicBandSound);
 });
  
 // If the `mode` is `loop` or `non-loop`, event will occur when the card is removed
 nfc.on('touchend', () => {
-  console.log('Card was away.');
+  console.log('MagicBand was away.');
 });
  
 nfc.on('error', (err) => {
@@ -71,11 +72,13 @@ nfc.on('error', (err) => {
 });
 
 const magicBands = {
-  '04191b1a056680': 'daddy',
-  '0465573a076680': 'mommy',
-  '04388502076680': 'willow',
-  '04943cba426480': 'sebastian',
+  '04191b1a056680': { name: 'daddy', color: chalk.yellow },
+  '0465573a076680': { name: 'mommy', color: chalk.blueBright},
+  '04388502076680': { name: 'willow', color: chalk.redBright },
+  '04943cba426480': { name: 'sebastian', color: chalk.blue },
 };
+
+player.play(magicBandSound);
 
 //sudo apt-get install python-usb python-pip -y
 //sudo pip install -U nfcpy-id-reader
