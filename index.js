@@ -49,7 +49,7 @@ const nfc = new NfcpyId().start();
  
 nfc.on('touchstart', (card) => {
   console.log('Card ID: ' + card.id);
- 
+  console.log(`this card belongs to: ${magicBands[card.id]}`);
   // card.type is the same value as that of nfcpy.
   // 2: Mifare
   // 3: FeliCa
@@ -66,3 +66,13 @@ nfc.on('error', (err) => {
   // standard error output (color is red)
   console.error('\u001b[31m', err, '\u001b[0m');
 });
+
+const magicBands = {
+  '04191b1a056680': 'daddy',
+  '0465573a076680': 'mommy',
+  '04388502076680': 'willow',
+  '04943cba426480': 'sebastian',
+};
+
+//sudo apt-get install python-usb python-pip -y
+//sudo pip install -U nfcpy-id-reader
