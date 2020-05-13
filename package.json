@@ -19,8 +19,10 @@
   "dependencies": {
     "@pokusew/pcsclite": "^0.6.0",
     "chalk": "^4.0.0",
+    "johnny-five": "^1.4.0",
     "nfc-pcsc": "^0.8.0",
     "node-nfcpy-id": "^0.1.1",
+    "node-pixel": "^0.10.2",
     "node-wav-player": "^0.1.0",
     "play-sound": "^1.1.3"
   }
