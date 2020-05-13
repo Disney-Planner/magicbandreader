@@ -102,18 +102,6 @@ class CommandLineInterface(object):
             logging.getLogger(module).setLevel(1)
 
         log.debug(self.options)
-
-        if "test" in self.groups:
-            if self.options.test_all:
-                # get_test_method() yields (line, name, docstr), ..., ...
-                test_methods = sorted(get_test_methods(self),
-                                      key=itemgetter(0))
-                self.options.test = list(map(itemgetter(1), test_methods))
-
-            if len(self.options.test) > 0 and self.options.select:
-                self.options.test = filter(
-                    lambda name: re.match(self.options.select, name),
-                    self.options.test)
         logging.debug("done")
 
     def add_dbg_options(self, argument_parser):
@@ -331,29 +319,6 @@ class CommandLineInterface(object):
                 }[self.options.technology.upper()]
         else:
             rdwr_options = None
-
-        if "llcp" in self.groups:
-            if self.options.mode is None:
-                self.options.role = None
-            elif self.options.mode in ('t', 'target'):
-                self.options.role = 'target'
-            elif self.options.mode in ('i', 'initiator'):
-                self.options.role = 'initiator'
-            llcp_options = {
-                'on-startup': self.on_llcp_startup,
-                'on-connect': self.on_llcp_connect,
-                'role':       self.options.role,
-                'brs':        (106, 212, 424).index(self.options.bitrate),
-                'acm':        (not self.options.passive_only),
-                'rwt':        self.options.rwt,
-                'miu':        self.options.miu,
-                'lto':        self.options.lto,
-                'lsc':        self.options.lsc,
-                'agf':        (not self.options.no_aggregation),
-                'sec':        (not self.options.no_encryption),
-            }
-        else:
-            llcp_options = None
 
         if "card" in self.groups:
             card_options = {
