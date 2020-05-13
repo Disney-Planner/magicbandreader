@@ -81,7 +81,8 @@ const magicBands = {
 pixel = require("node-pixel");
 five = require("johnny-five");
  
-var board = new five.Board(opts);
+var Raspi = require("raspi-io").RaspiIO;
+var board = new five.Board({io: new Raspi()});
 var strip = null;
  
 board.on("ready", function() {
