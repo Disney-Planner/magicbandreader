@@ -78,24 +78,46 @@ const magicBands = {
   '04943cba426480': { name: 'sebastian', color: chalk.blue },
 };
 
-pixel = require("node-pixel");
-five = require("johnny-five");
+const pixel = require("node-pixel");
+const five = require("johnny-five");
  
-var Raspi = require("raspi-io").RaspiIO;
-var board = new five.Board({io: new Raspi()});
-var strip = null;
- 
+const opts = {};
+
+const board = new five.Board(opts);
+let strip = null;
+
+const fps = 20;
+
 board.on("ready", function() {
  
     strip = new pixel.Strip({
+        data: 6,
+        length: 8,
+        color_order: pixel.COLOR_ORDER.GRB,
         board: this,
         controller: "FIRMATA",
-        strips: [ {pin: 18, length: 4}, ], // this is preferred form for definition
-        gamma: 2.8, // set to a gamma that works nicely for WS2812
     });
  
     strip.on("ready", function() {
-        strip.show();
+      console.log("Strip ready, let's go");
+
+      var colors = ["red", "green", "blue", "yellow", "cyan", "magenta", "white"];
+      var current_colors = [0,1,2,3,4];
+      var current_pos = [0,1,2,3,4];
+      var blinker = setInterval(function() {
+
+          strip.color("#000"); // blanks it out
+
+          for (var i=0; i< current_pos.length; i++) {
+              if (++current_pos[i] >= strip.length) {
+                  current_pos[i] = 0;
+                  if (++current_colors[i] >= colors.length) current_colors[i] = 0;
+              }
+              strip.pixel(current_pos[i]).color(colors[current_colors[i]]);
+          }
+
+          strip.show();
+      }, 1000/fps);
     });
 });
 //sudo apt-get install python-usb python-pip -y
